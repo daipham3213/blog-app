@@ -64,8 +64,8 @@ export const imageTypes = {
 }
 
 export const language = {
-    VIETNAMESE: 'vi',
-    ENGLISH: 'en'
+    VIETNAMESE: 'vi-VN',
+    ENGLISH: 'en-EN'
 }
 
 export const tagConstants = {

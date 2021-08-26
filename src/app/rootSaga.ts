@@ -1,12 +1,10 @@
 import {all} from 'redux-saga/effects'
+import authSaga from '../pages/auth/sagas';
 
-function* helloSaga(){
-    console.log('Hello saga! Update');
-}
 
 function* rootSaga() {
     console.log('Saga active');
-    yield all([helloSaga()])
+    yield all([authSaga()])
 }
 
 export default rootSaga

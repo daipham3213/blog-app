@@ -1,14 +1,14 @@
-import { Button, CircularProgress, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Avatar, Button, CircularProgress, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import AuthContext from './authContext';
 import { LockOutlined } from '@material-ui/icons';
-import { InputField } from '../../../common/InputField';
+import { InputField } from '../../../components/formFields';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { LoginModel } from '../../../../models/services.model/models';
+import { LoginModel } from '../../../models/services.model/models';
 import { Alert } from '@material-ui/lab';
+import { useAppSelector } from '../../../app/hooks';
 
 export interface LoginFormProps {
     initialValues?: LoginModel,
@@ -27,15 +27,18 @@ const schema = yup.object().shape({
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: '1rem',
+        height: '100%',
+        position: 'relative',
+        paddingBottom: 20,
     },
 
-}))
+}));
 
 const LoginCard = ({ initialValues, onSubmit }: LoginFormProps) => {
-    //const dispatch = useDispatch();
-    const classes = useStyles()
+    const classes = useStyles();
 
     const [error, setError] = useState<string>('');
+    const isLogging = useAppSelector((state) => state.login.logging);
     //const [animate, setAnimate] = useState<number>(1)
 
     // @ts-ignore
@@ -45,7 +48,6 @@ const LoginCard = ({ initialValues, onSubmit }: LoginFormProps) => {
         try {
             // Clear previous submission error
             setError('');
-            console.log('username - pass: ',formValues.username, formValues.password);
             await onSubmit?.(formValues);
         } catch (error) {
             setError(error.message);
@@ -67,22 +69,34 @@ const LoginCard = ({ initialValues, onSubmit }: LoginFormProps) => {
         <Paper className={classes.root}>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <Grid container justifyContent={'center'} spacing={2}>
-                    <Grid item xs={12} container justifyContent={'center'} alignItems={'center'}>
-                        <LockOutlined />
+                    <Grid
+                        item xs={12}
+                        container
+                        justifyContent={'center'}
+                        alignItems={'center'}
+                        direction={'column'}
+                    >
+                        <Avatar><LockOutlined /></Avatar>
                         <Typography variant={'overline'}>
                             Login
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <InputField label={'Username'} control={control} name={'username'} />
+                        <InputField label={'Username'} control={control} name={'username'} sizeString={'medium'} />
                     </Grid>
                     <Grid item xs={12}>
-                        <InputField label={'Password'} control={control} name={'Password'} />
+                        <InputField
+                            label={'Password'}
+                            control={control}
+                            name={'password'}
+                            type={'password'}
+                            sizeString={'medium'}
+                        />
                     </Grid>
                     {error && <Alert severity='error'>{error}</Alert>}
                     <Grid item container justifyContent={'space-evenly'} spacing={2} xs={12}>
-                        <Button type='submit' onClick={handleSubmit(handleFormSubmit)} variant='outlined' color='primary' disabled={isSubmitting}>
-                            {isSubmitting && <CircularProgress size={16} color='primary' />}
+                        <Button type={'submit'} variant='outlined' color='primary' disabled={isSubmitting}>
+                            {isLogging && <CircularProgress size={16} color='primary' />}
                             &nbsp;Login
                         </Button>
                         <Button variant='outlined' color='secondary' onClick={switchToSignUp}>Sign up</Button>

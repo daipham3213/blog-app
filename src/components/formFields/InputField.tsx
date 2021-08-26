@@ -6,9 +6,10 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
     control: Control<any>;
     label?: string;
+    sizeString?: 'medium' | 'small';
 }
 
-export function InputField({ name, control, label, ...inputProps }: InputFieldProps) {
+export function InputField({ name, control, label, sizeString, ...inputProps }: InputFieldProps) {
     const {
         field: { value, onChange, onBlur, ref },
         fieldState: { invalid, error },
@@ -18,12 +19,11 @@ export function InputField({ name, control, label, ...inputProps }: InputFieldPr
     });
 
 
-
     return (
         <TextField
             fullWidth
-            size='small'
             margin='normal'
+            name={name}
             value={value}
             onChange={onChange}
             onBlur={onBlur}
@@ -33,6 +33,7 @@ export function InputField({ name, control, label, ...inputProps }: InputFieldPr
             error={invalid}
             helperText={error?.message}
             inputProps={inputProps}
+            size={sizeString ?? 'small'}
         />
     );
 }

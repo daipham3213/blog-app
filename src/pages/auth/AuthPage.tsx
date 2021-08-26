@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import AuthContext from './components/authContext';
 import { Grid, makeStyles } from '@material-ui/core';
 import LoginCard from './components/LoginCard';
-import { LoginModel } from '../../../models/services.model/models';
-import { toast } from 'react-toastify';
-import { history } from '../../../helpers/history';
+import { LoginModel } from '../../models/services.model/models';
+import { useAppDispatch } from '../../app/hooks';
+import { loginActions } from './slices/loginSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,14 +14,24 @@ const useStyles = makeStyles((theme) => ({
     background: {},
     container: {
         padding: '1rem',
+        verticalAlign: 'middle',
+    },
+    item: {
+        padding: '1rem',
+        position: 'absolute',
+        right: 0,
+        top: '50%',
+        width: 400,
+        transform: 'translate(-50%, -50%)',
     },
 }))
 
 function AuthPage() {
     const classes = useStyles()
 
+    const dispatch = useAppDispatch();
     const [active, setActive] = useState("login");
-    const [username, setUsername] = useState("");
+    //const [username, setUsername] = useState("");
 
     const switchToSignup = () => {
         setTimeout(() => {
@@ -36,20 +46,15 @@ function AuthPage() {
     };
     const switchToActive = (username: string) => {
         setTimeout(() => {
-            setUsername(username);
+            //setUsername(username);
             setActive("active");
         }, 600);
     };
 
     const contextValue = { switchToSignup, switchToSignIn, switchToActive };
 
-    const handleLoginFormSubmit = async (formValues: LoginModel) => {
-
-        // Toast success
-        toast.success('Save student successfully!');
-        console.log('Clicked');
-        // Redirect back to student list
-       // history.push('/admin/students');
+    const handleLoginFormSubmit = (formValues: LoginModel) => {
+        dispatch(loginActions.request({ ...formValues }))
     };
 
     const initialValues : LoginModel = {
@@ -63,11 +68,12 @@ function AuthPage() {
                     <Grid
                         container
                         justifyContent={'center'}
-                        spacing={0}
+                        alignItems={'center'}
+                        spacing={1}
                         direction={'column'}
                         className={classes.container}
                     >
-                        <Grid item xs={12} sm={6} style={{width: 400}}>
+                        <Grid item xs={12} sm={6} className={classes.item}>
                             {active === 'login' ? <LoginCard initialValues={initialValues} onSubmit={handleLoginFormSubmit}/>: null}
                         </Grid>
                     </Grid>
