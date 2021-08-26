@@ -10,14 +10,21 @@ import SaveIcon from '@material-ui/icons/Save';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex',
-            alignItems: 'center',
-            top: '50%',
-            transform: 'translate(50%, 50%)',
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 105,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "#000",
+            opacity: 0.5,
         },
         wrapper: {
             margin: theme.spacing(2),
-            position: 'relative',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            zIndex: 106,
         },
         buttonSuccess: {
             backgroundColor: green[500],

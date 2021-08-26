@@ -73,28 +73,6 @@ function MainLayout(props: React.ComponentProps<any>) {
                 <div className={classes.content}>
                     <div className={classes.toolbar} />
                     {children}
-                    <div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aliquam dolore excepturi fuga
-                            fugit minus quisquam reprehenderit repudiandae veniam. Cumque dolore inventore ipsum
-                            officiis praesentium quas quidem reiciendis suscipit veritatis.
-                        </div>
-                        <div>Aut delectus dolorem et explicabo harum nulla? Ad asperiores commodi, cum cumque, deleniti
-                            dolor dolore doloremque fugit laboriosam minima minus obcaecati odit perferendis provident
-                            quos repudiandae sapiente velit vitae voluptas.
-                        </div>
-                        <div>Consequatur minima minus praesentium sint. Adipisci aliquid beatae, dolorem doloribus earum
-                            est eum modi obcaecati porro quo reprehenderit temporibus unde vitae! Alias animi ea iusto
-                            labore laudantium, nihil numquam officia.
-                        </div>
-                        <div>At dicta maiores minima modi nemo porro tempore totam? Ab aperiam aspernatur consectetur
-                            ducimus eaque eius eligendi error illo inventore, itaque magni odit pariatur quaerat
-                            quibusdam recusandae ut voluptates voluptatibus.
-                        </div>
-                        <div>Accusamus adipisci consectetur dicta dolore dolorem doloribus dolorum ducimus ea eaque,
-                            enim est eveniet in iure laudantium libero molestiae officia qui repellat repellendus sed
-                            sint tenetur unde, ut, vero voluptas?
-                        </div>
-                    </div>
                 </div>
             </Box>
         </Box>

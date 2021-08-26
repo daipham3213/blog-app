@@ -6,7 +6,7 @@ import MinimalLayout from '../components/layout/Minimal/MinimalLayout';
 import MainLayout from '../components/layout/Main/MainLayout';
 
 const Auth = lazy(() => import('../pages/auth/AuthPage'));
-const Home = lazy(() => import('../components/layout/Main/MainLayout'));
+const Home = lazy(() => import('../pages/home/HomePage'));
 
 const Routes = () => {
     return (

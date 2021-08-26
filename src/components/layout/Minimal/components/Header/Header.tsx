@@ -11,6 +11,7 @@ import HideOnScroll from '../../../../../helpers/hideOnScroll';
 import { useTranslation } from 'react-i18next';
 import { useChangeTheme } from '../../../../theme';
 import ScrollTop from '../../../../../helpers/scrollTop';
+import DjinLogo from '../../../Logo/DjinLogo';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,9 +47,8 @@ export default function Header() {
 
     const isLight = theme.palette.type === 'light';
     const handleThemeMode = () => {
-        changeTheme()
+        changeTheme();
     };
-
 
     const handleChangeLang = () => {
         i18n.changeLanguage(i18n.language === 'vi-VN' ? 'en-EN' : 'vi-VN').then(() => {
@@ -65,6 +65,7 @@ export default function Header() {
                     className={classes.appBar}
                 >
                     <Toolbar>
+                        <DjinLogo />
                         <div style={{ flexGrow: 1 }} />
                         <IconButton
                             style={{ color: colors.common.white }}

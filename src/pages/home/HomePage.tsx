@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 
-const HomePage = () => {
+interface IHomePage extends React.Component{
+    className?: any;
+    children: ReactNode;
+}
+
+const useStyles = makeStyles((theme) => ({
+    root: {}
+}))
+
+const HomePage = (props: IHomePage) => {
+    const classes = useStyles()
+
     return (
-        <div>
-
+        <div className={clsx(props.className, classes.root)}>
+            {props.children}
         </div>
     );
 };
