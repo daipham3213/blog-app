@@ -15,6 +15,8 @@ import HideOnScroll from '../../../../../helpers/hideOnScroll';
 import { useTranslation } from 'react-i18next';
 import { useChangeTheme } from '../../../../theme';
 import ScrollTop from '../../../../../helpers/scrollTop';
+import DjinLogo from '../../../Logo/DjinLogo';
+import SearchBar from '../../../SearchBar/SearchBar';
 
 const drawerWidth = 240;
 
@@ -81,6 +83,7 @@ export default function Header() {
             <CssBaseline />
             <HideOnScroll>
                 <AppBar
+                    color={'primary'}
                     position='fixed'
                     className={clsx(classes.appBar, {
                         [classes.appBarShift]: open,
@@ -98,7 +101,8 @@ export default function Header() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <div style={{ flexGrow: 1 }} />
+                        <DjinLogo/>
+                        <SearchBar style={{ flexGrow: 1, color: 'inherit' }} />
                         <IconButton
                             style={{ color: colors.common.white }}
                             aria-label={'theme toggle'}
